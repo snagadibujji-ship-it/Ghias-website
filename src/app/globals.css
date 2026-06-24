@@ -1,0 +1,351 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind v4 dark-mode via class strategy (next-themes attribute="class"). */
+@custom-variant dark (&:is(.dark *));
+
+/*
+  ===========================================================================
+  GHIA-CHRONOS v2.0 — Premium cinematic dark design tokens
+  Base: deepest obsidian. Telemetry accents: electric green + cyan.
+  ===========================================================================
+*/
+
+:root {
+  --radius: 0.75rem;
+
+  /* Light fallback (the product is dark-mode dominant, this is a graceful base). */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.18 0.01 270);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 270);
+  --primary: oklch(0.7 0.18 158);
+  --primary-foreground: oklch(0.16 0.02 160);
+  --secondary: oklch(0.96 0.005 270);
+  --secondary-foreground: oklch(0.2 0.01 270);
+  --muted: oklch(0.96 0.005 270);
+  --muted-foreground: oklch(0.5 0.01 270);
+  --accent: oklch(0.95 0.01 200);
+  --accent-foreground: oklch(0.2 0.01 270);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.005 270);
+  --input: oklch(0.9 0.005 270);
+  --ring: oklch(0.7 0.18 158);
+
+  /* Brand signal accents */
+  --signal-green: oklch(0.82 0.2 150);
+  --signal-cyan: oklch(0.82 0.13 200);
+  --signal-amber: oklch(0.82 0.16 75);
+  --signal-red: oklch(0.68 0.21 22);
+
+  /* Surface system */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --hairline: rgba(0, 0, 0, 0.08);
+  --glow-green: rgba(52, 222, 158, 0.35);
+  --glow-cyan: rgba(34, 211, 238, 0.3);
+}
+
+.dark {
+  /* Cinematic obsidian core */
+  --background: oklch(0.145 0.005 285); /* ~ #09090b obsidian */
+  --foreground: oklch(0.95 0.004 286);
+  --card: oklch(0.176 0.005 286); /* graphite glass surface */
+  --card-foreground: oklch(0.96 0.003 286);
+  --popover: oklch(0.165 0.005 286);
+  --popover-foreground: oklch(0.96 0.003 286);
+
+  /* Electric green primary */
+  --primary: oklch(0.84 0.2 152);
+  --primary-foreground: oklch(0.16 0.03 160);
+
+  --secondary: oklch(0.24 0.006 286);
+  --secondary-foreground: oklch(0.92 0.003 286);
+  --muted: oklch(0.23 0.006 286);
+  --muted-foreground: oklch(0.66 0.006 286);
+  --accent: oklch(0.27 0.01 220);
+  --accent-foreground: oklch(0.96 0.003 286);
+  --destructive: oklch(0.65 0.21 22);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.3 0.006 286 / 55%);
+  --input: oklch(0.32 0.006 286 / 40%);
+  --ring: oklch(0.84 0.2 152);
+
+  /* Brand signal accents (slightly brighter in dark) */
+  --signal-green: oklch(0.86 0.21 151);
+  --signal-cyan: oklch(0.85 0.13 200);
+  --signal-amber: oklch(0.84 0.16 75);
+  --signal-red: oklch(0.7 0.21 22);
+
+  /* Surface system — precision-machined glass */
+  --glass-bg: rgba(14, 14, 18, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --hairline: rgba(255, 255, 255, 0.07);
+  --glow-green: rgba(52, 232, 162, 0.4);
+  --glow-cyan: rgba(45, 212, 238, 0.32);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 10px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-signal-green: var(--signal-green);
+  --color-signal-cyan: var(--signal-cyan);
+  --color-signal-amber: var(--signal-amber);
+  --color-signal-red: var(--signal-red);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --animate-pulse-glow: pulse-glow 3.2s ease-in-out infinite;
+  --animate-scan: scan 6s linear infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+  --animate-breathe: breathe 4s ease-in-out infinite;
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.04); opacity: 1; }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv01", "cv03";
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--signal-green) 35%, transparent);
+    color: var(--foreground);
+  }
+
+  /* Refined obsidian scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--foreground) 14%, transparent);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklch, var(--foreground) 24%, transparent);
+    background-clip: padding-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/*
+  ===========================================================================
+  Surface utilities — glass, glow, grid, noise. Restrained and precise.
+  ===========================================================================
+*/
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-strong {
+  background: color-mix(in oklch, var(--card) 78%, transparent);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  border: 1px solid var(--glass-border);
+}
+
+.hairline {
+  border: 1px solid var(--hairline);
+}
+
+/* Soft inner + outer glow on panels for precision-machined depth */
+.surface {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--card) 92%, transparent),
+      color-mix(in oklch, var(--background) 88%, transparent)
+    );
+  border: 1px solid var(--hairline);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+    0 1px 0 0 rgba(0, 0, 0, 0.4),
+    0 18px 50px -28px rgba(0, 0, 0, 0.8);
+}
+
+.glow-green {
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--signal-green) 32%, transparent),
+    0 0 24px -4px var(--glow-green),
+    0 0 60px -18px var(--glow-green);
+}
+
+.glow-cyan {
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--signal-cyan) 28%, transparent),
+    0 0 22px -4px var(--glow-cyan),
+    0 0 56px -18px var(--glow-cyan);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 18px var(--glow-green);
+}
+
+/* Subtle engineering grid backdrop */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--hairline) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.bg-grid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* Restrained film-grain noise overlay */
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* CRT-style scanline texture for operator feeds */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Animated gradient hairline for live edges */
+.edge-glow {
+  position: relative;
+}
+.edge-glow::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    color-mix(in oklch, var(--signal-green) 70%, transparent),
+    color-mix(in oklch, var(--signal-cyan) 70%, transparent),
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.edge-glow:hover::after {
+  opacity: 1;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklch, var(--foreground) 8%, transparent),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* Premium tabular numerals for telemetry readouts */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
